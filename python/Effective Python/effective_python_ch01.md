@@ -2,13 +2,13 @@
 
 
 
-### Better Way 1 
+## Better Way 1 
 
 > 사용 중인 파이썬의 버전을 알아두라
 
 
 
-##### 파이썬 버전 확인
+#### 파이썬 버전 확인
 
 ```bash
 --$ python --version
@@ -20,13 +20,13 @@
 
 
 
-### Better Way 2
+## Better Way 2
 
 > PEP 8 스타일 가이드를 따르라
 
 
 
-##### 공백
+#### 공백
 
 - 탭 대신 스페이스 4칸을 사용해 들여쓰기한다.
 
@@ -54,7 +54,7 @@
 
 
 
-##### 명명 규약
+#### 명명 규약
 
 - 함수, 변수, 애트리뷰트 => `snake_case`
 - 클래스(예외 포함) => `PascalCase`
@@ -88,7 +88,7 @@
 
   
 
-##### 식과 문
+#### 식과 문
 
 - 컨테이너나 시퀀스가 비어 있는지를 검사할 때, 길이를 0과 비교하지 않는다. 빈 컨테이너나 시퀀스는 False로 취급되므로, `if not 컨테이너`라는 조건문을 쓴다.
 
@@ -126,7 +126,7 @@
 
 
 
-##### 임포트
+#### 임포트
 
 - import문을 항상 파일 맨 앞에 위치시킨다.
 
@@ -153,25 +153,27 @@
 
 
 
-### Better Way 3
+## Better Way 3
 
 > bytes와 str의 차이를 알아두라
 
 
 
-##### bytes와 str
+#### bytes와 str
 
 - `bytes` 인스턴스는 이진 데이터를 저장하고, `str` 인스턴스는 유니코드 데이터를 저장한다.
   - `str` 인스턴스에는 직접 대응하는 이진 인코딩이 없다.
   - `bytes` 인스턴스에는 직접 대응하는 텍스트 인코딩이 없다.
+
 - 따라서 `bytes` 인스턴스를 `str` 인스턴스로, 혹은 그 반대로 바꾸는 메서드가 필요하다.
   - `str`의 `encode` 메서드 : `str` 객체 => `bytes` 객체
   - `bytes`의 `decode` 메서드 : `bytes` 객체 => `str` 객체
+
 - `bytes`와 `str` 인스턴스를 (>, ==, +, %와 같은) 연산자에 섞어서 사용할 수 없다.
 
 
 
-##### 유니코드 샌드위치
+#### 유니코드 샌드위치
 
 - 파이썬 프로그램을 작성할 때 유니코드 데이터를 인코딩하거나 디코딩하는 부분을 인터페이스의 가장 먼 경계 지점에 위치시키는 방식
 
@@ -182,7 +184,7 @@
 
 
 
-##### 파일 읽고 쓰기
+#### 파일 읽고 쓰기
 
 - 이진 데이터를 파일에서 읽거나 파일에 쓰고 싶다면, 항상 이진모드(`'rb'`나 `'wb'`)로 파일을 열어야 한다.
 
@@ -197,26 +199,17 @@
       data = f.read()
   ```
 
-
-
 </hr>
 
-
-
-### Better Way 4
+## Better Way 4
 
 > C 스타일 형식 문자열을 str.format과 쓰기보다는 f-문자열을 통한 인터폴레이션을 사용하라
 
-
-
 </hr>
 
-
-
-### Better Way 5
+## Better Way 5
 
 > 복잡한 식을 쓰는 대신 도우미 함수를 작성하라
-
 
 
 ```python
@@ -249,9 +242,7 @@ else:
 
 코드를 줄여쓰는 것보다 가독성을 좋게 하는 것이 더 가치 있다.
 
-
-
-
+<br>
 
 그리고 같은 로직을 반복할 경우, 도우미 함수를 작성해야 한다.
 
@@ -269,21 +260,17 @@ first_even_num = get_first_number(num_dict, '짝수')
 ```
 
 
-
 </hr>
 
 
-
-### Better Way 6
+## Better Way 6
 
 > 인덱스를 사용하는 대신 대입을 사용해 데이터를 언패킹하라
 
 
-
-### Better Way 7
+## Better Way 7
 
 > range보다는 enumerate를 사용하라
-
 
 
 아래 코드와 같이 언패킹과 enumerate 내장 함수를 사용하면 보다 깔끔한 코드를 작성할 수 있다.
@@ -322,13 +309,13 @@ for rank, (name, ratings) in enumerate(languages, 1):
 
 
 
-### Better Way 8
+## Better Way 8
 
 > 여러 이터레이터에 대해 나란히 루프를 수행하려면  zip을 사용하라
 
 
 
-- ##### 이터레이터(iterator) = 이터러블한 객체
+- #### 이터레이터(iterator) = 이터러블한 객체
 
   - 리스트, 딕셔너리, 세트, 튜플, 문자열 등
 
@@ -338,46 +325,48 @@ for rank, (name, ratings) in enumerate(languages, 1):
 
   - `zip()` 함수는 가장 짧은 이터레이터의 순회가 끝나면 반복 순회를 종료한다.
 
-  ```python
-  groups = ('snsd', 'shinee', 'fx', 'exo', 'red_velvet')
-  numbers = [1, 2, 3, 4]
-  agency = '에스엠'
-  
-  for a, b, c in zip(groups, numbers, agency):
-      print(a, b, c)
-  
-  # snsd 1 에
-  # shinee 2 스
-  # fx 3 엠
-  ```
+
+```python
+groups = ('snsd', 'shinee', 'fx', 'exo', 'red_velvet')
+numbers = [1, 2, 3, 4]
+agency = '에스엠'
+
+for a, b, c in zip(groups, numbers, agency):
+    print(a, b, c)
+
+# snsd 1 에
+# shinee 2 스
+# fx 3 엠
+```
 
 - `itertools` 내장 모듈의 `zip_longest()` 함수는 가장 긴 이터레이터의 순회가 끝날 때까지 반복 순회한다.
 
   - 이미 순회가 끝난 이터레이터의 경우, `fillvalue` 속성의 값으로 대체한다.
   - `fillvalue` 속성의 디폴트값은 None이다.
 
-  ```python
-  import itertools
-  
-  
-  a = [1, 2, 3]
-  b = [4, 5]
-  
-  for x, y in itertools.zip_longest(a, b, fillvalue="없음"):
-      print(x,y)
-  
-  # 1 4
-  # 2 5
-  # 3 없음
-  ```
 
-  
+
+```python
+
+import itertools
+
+
+a = [1, 2, 3]
+b = [4, 5]
+
+for x, y in itertools.zip_longest(a, b, fillvalue="없음"):
+    print(x,y)
+
+# 1 4
+# 2 5
+# 3 없음
+```
+
 
 </hr>
 
 
-
-### Better Way 9
+## Better Way 9
 
 > for나 while 루프 뒤에 else 블록을 사용하지 말라
 
@@ -387,7 +376,10 @@ for rank, (name, ratings) in enumerate(languages, 1):
 - 직관적으로는 for문이나 while문을 중간에 빠져나온 경우 else문이 실행될 것 같지만,
 - 실제로는 반대로 중간에 빠져나오지 않고 반복문이 끝났을 때 else문이 실행된다.
 
+
+
 ```python
+
 # 매개변수 num이 소수인지 판별하는 함수
 def is_prime(num):
     for i in range(2, int(num ** 1 / 2) + 1):
@@ -401,27 +393,30 @@ def is_prime(num):
 
 
 
-### Better Way 10
+## Better Way 10
 
 > 대입식을 사용해 반복을 피하라
 
 
 
-##### 대입식(assignment expression) = 왈러스 연산자(walrus operator)
+#### 대입식(assignment expression) = 왈러스 연산자(walrus operator)
 
 - 파이썬 3.8에서 도입
 
 - `a := b`
 
-  - 1) a에 b를 대입한다.
-  - 2) a의 값이 평가된다.
+  - a에 b를 대입한다.
+  - a의 값이 평가된다.
 
-  ```python
-  if count:= len(students):
-      print(f"학생이 {count}명입니다.")
-  else:
-      print("학생이 없습니다.")
-  ```
+
+
+```python
+
+if count:= len(students):
+    print(f"학생이 {count}명입니다.")
+else:
+    print("학생이 없습니다.")
+```
 
 - 대입식을 사용한 위 코드는 count 변수가 if문의 첫 번째 블록에서만 의미가 있다는 점이 명확히 보이기 때문에 더 읽기 쉽다.
 
@@ -430,5 +425,5 @@ def is_prime(num):
 - 파이썬에는 switch/case문이 없다. 그래서 다중 선택처리를 해야 하는 경우, 코드가 복잡해지기 쉽다. 
 - 대입식을 활용하면 switch/case문과 유사한 코드를 작성할 수 있다.
 
-- 책의 예시를 들면, [이 소스코드](https://github.com/gilbutITbook/080235/blob/master/Chapter1/Better%20way10.py)에서 116~128줄의 코드를 130~138줄의 코드로 바꿀 수 있다.
+- 책의 예시를 들면, [이 소스코드](https://github.com/gilbutITbook/080235/blob/master/Chapter1/Better%20way10.py)에서 116-128줄의 코드를 130-138줄의 코드로 바꿀 수 있다.
 
