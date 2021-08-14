@@ -425,5 +425,37 @@ else:
 - 파이썬에는 switch/case문이 없다. 그래서 다중 선택처리를 해야 하는 경우, 코드가 복잡해지기 쉽다. 
 - 대입식을 활용하면 switch/case문과 유사한 코드를 작성할 수 있다.
 
-- 책의 예시를 들면, [이 소스코드](https://github.com/gilbutITbook/080235/blob/master/Chapter1/Better%20way10.py)에서 116-128줄의 코드를 130-138줄의 코드로 바꿀 수 있다.
+- 아래의 첫 번째 코드를 두 번째 코드로 바꿀 수 있다.
+
+```python
+if count >= 2:
+    pieces = slice_bananas(count)
+    to_enjoy = make_smoothies(pieces)
+else:
+    count = fresh_fruit.get('사과', 0)
+    if count >= 4:
+        to_enjoy = make_cider(count)
+    else:
+        count = fresh_fruit.get('레몬', 0)
+        if count:
+            to_enjoy = make_lemonade(count)
+        else:
+            to_enjoy = '아무것도 없음'
+
+# 출처 : [파이썬 코딩의 기술 2판] p.81
+```
+
+```python
+if (count := fresh_fruit.get('바나나', 0)) >= 2:
+    pieces = slice_bananas(count)
+    to_enjoy = make_smoothies(pieces)
+elif (count := fresh_fruit.get('사과', 0)) >= 4:
+    to_enjoy = make_cider(count)
+elif count := fresh_fruit.get('레몬', 0):
+    to_enjoy = make_lemonade(count)
+else:
+    to_enjoy = '아무것도 없음'
+    
+# 출처 : [파이썬 코딩의 기술 2판] p.82
+```
 
