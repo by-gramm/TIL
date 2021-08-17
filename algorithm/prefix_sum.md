@@ -36,7 +36,10 @@ accumulate = [1, 3, 6, 10, 15, 21, 28, 36, 45, 55]
 # arr[5]에서 arr[9]까지의 구간 합 = accumulate[9] - accumulate[4]
 ```
 
-![image-20210812171315457](algorithm.assets\image01.png)
+<p align="center">
+  <img src="algorithm.assets/image01.png" width="70%" height="70%" />
+</p>
+
 
 ## 2. 응용 - 2차원 구간 합
 
@@ -46,7 +49,9 @@ accumulate = [1, 3, 6, 10, 15, 21, 28, 36, 45, 55]
 
 - 배열의 `(0, 0)`을 왼쪽 위 모서리, `(r, c)`를 오른쪽 아래 모서리로 가지는 직사각형 내의 모든 요소의 합
 
-![](algorithm.assets\image02.png)
+<p align="center">
+  <img src="algorithm.assets/image02.png" width="100%" height="100%" />
+</p>
 
 ```python
 arr = [[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12]]
@@ -63,5 +68,6 @@ accumulate = [[1, 3, 6, 10], [6, 14, 24, 36], [15, 33, 54, 78]]
 - `accumulate[r2][c2] - accumulate[r2][c1 - 1] - accumulate[r1 - 1][c2] + accumulate[r1][c1]`
   - 아래 그림을 통해 위와 같은 식이 나오는 이유를 이해할 수 있다.
 
-![](algorithm.assets\image03.png)
-
+<p align="center">
+  <img src="algorithm.assets/image03.png" width="100%" height="100%" />
+</p>
