@@ -1,3 +1,7 @@
+# 코딩 테스트를 위한 최소한의 순열과 조합
+
+
+
 ### 순열과 조합의 개념
 
 - **순열(permutation)**
@@ -18,23 +22,36 @@
 
 - **순열** : n개 중 r개를 뽑아서 정렬하는 경우의 수
 
-  $$_nP_r = {n! \over (n - r)!}$$
-  
+<p align="center">
+  <img src="algorithm.assets/image04.png" width="20%" height="20%" />
+</p>
+
+
 - **조합** : n개 중 r개를 뽑는 경우의 수
 
-  $$_nC_r = {n! \over (n - r)!r!}$$
-  
-- **중복 순열** : n개 중 r개를 `중복을 허용해서` 뽑아서 정렬하는 경우의 수
+<p align="center">
+  <img src="algorithm.assets/image05.png" width="20%" height="20%" />
+</p>
 
-  $$n^r$$
+
+- **중복 순열** : n개 중 r개를 `중복을 허용해서` 뽑아서 정렬하는 경우의 수
   
+<p align="center">
+  <img src="algorithm.assets/image06.png" width="5%" height="5%" />
+</p>
+
+
 - **중복 조합** : n개 중 r개를 `중복을 허용해서` 뽑는 경우의 수
 
-  $$_{n+r-1}C_r$$
+<p align="center">
+  <img src="algorithm.assets/image07.png" width="15%" height="15%" />
+</p>
 
-ex) NCT 멤버 중 7명을 뽑아 유닛 그룹을 만드는 경우의 수는?
+- ex) NCT 멤버 중 7명을 뽑아 유닛 그룹을 만드는 경우의 수는?
 
-$$_{23}C_7 = {23! \over (23 - 7)!7!} = 245,157$$
+<p align="center">
+  <img src="algorithm.assets/image08.png" width="30%" height="30%" />
+</p>
 
 <br>
 
