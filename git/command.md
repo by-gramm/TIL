@@ -34,9 +34,19 @@ git status
 ##### log
 
 - 커밋 히스토리를 보여주는 명령어
+  - `--oneline` : 각 로그를 한 줄에 출력함.
+  - `--graph` : 커밋 히스토리를 그래프 형식으로 출력함.
 
 ```bash
 git log
+```
+
+```bash
+git log --oneline
+```
+
+```bash
+git log --oneline --all --graph
 ```
 
 
@@ -53,9 +63,11 @@ git log
 
 - working directory에서 staging area에 파일을 업로드하는 명령어
   - `.` : 현재 폴더, 하위 폴더, 하위 파일 모두
+- add 뒤에 디렉토리명이 오는 경우, 해당 디렉토리 내에 수정사항이 있는 모든 파일을 staging area에 업로드
 
 ```bash
 git add <filename>
+git add <directory name>
 ```
 
 ```bash
@@ -64,10 +76,18 @@ git add .
 
 
 
+##### reset
+
+- staging area에 업로드한 파일을 다시 내리는 명령어
+
+```bash
+git reset <filename>
+```
+
 ##### commit
 
 - staging area에 올라온 파일들을 하나의 커밋으로 만들어 주는 (스냅샷 찍는) 명령어
-  - `--amend` 옵션을 사용하면 직전에 생성한 커밋을 대체할 수 있다.
+  - `--amend` : 직전에 생성한 커밋을 새로운 커밋으로 대체
 
 ```bash
 git commit -m "commit message"
@@ -101,4 +121,74 @@ git remote add <nickname> <url>
 git push <nickname> <branch name>
 ```
 
+- 로컬 저장소의 내용을 처음 원격 저장소에 올릴 때는 아래의 명령어를 사용함.
+
+```bash
+git push -u origin master
+```
+
+##### clone
+
+- 원격 저장소(ex. Github)의 프로젝트를 로컬에 가져오는 명령어
+
+```bash
+git clone <remote repository address>
+```
+
+### 브랜치 관리
+
+##### branch
+
+- 새로운 브랜치를 생성하는 명령어
+
+```bash
+git branch <branchname>
+```
+
+##### branch -d
+
+- 브랜치를 삭제하는 명령어
+
+```bash
+git branch -d <branchname>
+```
+
+##### switch
+
+- 현재 작업 중인 브랜치를 (switch 뒤의 브랜치로) 이동하는 명령어
+
+```bash
+git switch <branchname>
+```
+
+##### merge
+
+- 현재 브랜치에 다른 브랜치를 병합시키는 명령어
+  - `--squash` : git merge에서 지정한 브랜치의 모든 커밋을 하나의 커밋으로 만듬.
+
+```bash
+git merge <branchname>
+```
+
+```bash
+git merge --squash <branchname>
+```
+
+##### merge --abort
+
+- git merge에서 conflict 발생 시, merge 이전 상태로 되돌아가게 하는 명령어
+
+```bash
+git merge --abort
+```
+
+### 기타
+
+##### help
+
+- Git 명령어의 공식 매뉴얼 내용을 출력하는 명령어
+
+```bash
+git help <command name>
+```
 
