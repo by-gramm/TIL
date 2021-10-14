@@ -46,6 +46,7 @@
 #### 작동 순서
 
 1. 임의의 시작 정점을 하나 정한다. 시작 정점만 포함된 신장 트리 집합을 만든다.
+
 2. N개의 정점이 모두 선택될 때까지
    - 신장 트리 집합에 포함된 정점에 인접했으며 아직 방문하지 않은 정점 중, 최소 비용의 간선이 존재하는 정점을 선택한다.
    - 선택한 정점은 신장 트리 집합에 포함시킨다.
@@ -58,39 +59,47 @@ from math import inf
 
 def prim(start):
     global N, adj_mat
-    # visited_set: 현재까지 방문한 정점들의 집합
-    visited_set = set()
-    visited_set.add(start)
-    distance = 0
+    visited = [False] * N
+    visited[start] = True
+    """
+    costs[i]: 현재까지 방문한 정점에서 i번 정점으로 갈 수 있는 최소 비용
+    cnt: 현재 탐색중인 정점
+    """
+    costs = [inf] * N
+    costs[start] = 0
+    cnt = start
+    total = 0
 
-    # N - 1개의 간선을 선택할 때까지 반복한다.
+    # start를 제외하고 N - 1개의 정점을 선택할 때까지 반복한다.
     for _ in range(N - 1):
-        # min_dist: 현재 방문한 정점에서 갈 수 있는 간선의 최단 거리
+        for i in range(N):
+            # 아직 방문하지 않았고, 현재 방문한 정점에서 갈 수 있는 정점인 경우, 비용을 업데이트한다.
+            if not visited[i] and adj_mat[cnt][i]:
+                costs[i] = min(costs[i], adj_mat[cnt][i])
+
         # next_node: 현재 방문한 정점에서 최단 거리로 갈 수 있는 정점
-        min_dist, next_node = inf, -1
+        # min_cost: next_node로 갈 수 있는 최소 비용
+        next_node, min_cost = -1, inf
 
-        # 현재까지 방문한 모든 정점에 대하여
-        for node in visited_set:
-            # 해당 정점과 연결되어 있고 아직 방문하지 않은 모든 정점 중
-            # 소요 비용이 가장 작은 정점을 찾는다.
-            for j in range(1, N + 1):
-                if j not in visited_set and 0 < adj_mat[node][j] < min_dist:
-                    min_dist = adj_mat[node][j]
-                    next_node = j
+        for i in range(N):
+            if not visited[i] and costs[i] < min_cost:
+                next_node = i
+                min_cost = costs[i]  
 
-        distance += min_dist
-        visited_set.add(next_node)
+        total += min_cost
+        visited[next_node] = True
+        cnt = next_node
 
-    return distance
+    return total
 
 
 """
-N: 정점의 개수 (1번 ~ N번)
+N: 정점의 개수 (0번 ~ (N - 1)번)
 M: 간선의 개수
 adj_mat: 그래프의 인접 행렬
 """
 N, M = map(int, input().split())
-adj_mat = [[0] * (N + 1) for _ in range(N + 1)]
+adj_mat = [[0] * N for _ in range(N)]
 
 for _ in range(M):
     # x와 y 사이의 가중치 = value
@@ -98,8 +107,8 @@ for _ in range(M):
     adj_mat[x][y] = value
     adj_mat[y][x] = value
 
-# 1번 정점에서 탐색을 시작
-print(prim(1))
+# 0번 정점에서 탐색을 시작
+print(prim(0))
 ```
 
 #### 우선순위 큐를 사용한 코드 (링크)
@@ -205,11 +214,11 @@ print(distance)
 ## Prim vs Kruskal
 
 - Prim 알고리즘의 시간복잡도 : `O(N^2)`
+
 - Kruskal 알고리즘의 시간복잡도 : `O(ElogE)`
 
-
-
 - 정점에 비해 간선이 적은 **희소 그래프**에서는 Kruskal 알고리즘이 적합하다.
+- 
 - 정점에 비해 간선이 많은 **밀집 그래프**에서는 Prim 알고리즘이 적합하다.
 
 <br>
@@ -225,3 +234,4 @@ print(distance)
 [위키피디아 - 크루스칼 알고리즘](https://ko.wikipedia.org/wiki/%ED%81%AC%EB%9F%AC%EC%8A%A4%EC%BB%AC_%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98)
 
 [[알고리즘] 프림 알고리즘(Prim Algorithm)](https://deep-learning-study.tistory.com/595)
+
