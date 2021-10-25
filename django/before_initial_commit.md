@@ -48,7 +48,6 @@ pip freeze > requirements.txt
 <p align="center">
   <img src="django.assets/initial commit 02.png" />
 </p>
-
 <br>
 
 ### .gitignore
@@ -215,14 +214,84 @@ requirements.txt에 django-debug-toolbar를 추가한다. `pip freeze` 명령을
 
 <br>
 
+### 커스텀 유저 모델 설정
+
+장고 공식 문서에 따르면, 새로운 프로젝트를 시작할 때 커스텀 유저 모델을 설정하는 것이 강력히 권장된다고 한다. 디폴트 User 모델만으로 충분한 경우에도 그렇다. 
+
+1. 아직 User 모델을 관리하는 앱이 없다면, accounts 앱을 생성한 뒤 필요한 설정들을 한다.
+
+```bash
+# accounts 앱 생성
+python manage.py startapp accounts
+```
+
+```bash
+# settings.py
+
+ INSTALLED_APPS = [
+     # ...
+     'accounts',
+     # ...
+ ]
+```
+
+```python
+# <project>/urls.py
+
+urlpatterns = [
+    # ...
+    path('accounts/', include('accounts.urls')),
+]
+```
+
+```python
+# accounts/urls.py
+
+app_name = 'accounts'
+
+urlpatterns = [
+]
+```
+
+2. AbstractUser 클래스를 상속받은 커스텀 유저 모델을 만든다.
+
+```python
+# accounts/models.py
+
+from django.contrib.auth.models import AbstractUser
+
+class User(AbstractUser):
+    pass
+```
+
+3. 인증에 사용할 커스텀 유저 모델을 지정하기 위해, AUTH_USER_MODEL 값을 설정한다.
+
+```python
+# settings.py
+
+AUTH_USER_MODEL = 'accounts.User'  # '앱이름.모델이름'
+```
+
+4. admin 페이지에서 커스텀 유저 모델을 관리할 수 있도록, admin 사이트에 모델을 등록한다.
+
+```python
+# accounts/admin.py
+
+from django.contrib import admin
+from django.contrib.auth.admin import UserAdmin
+from .models import User
+
+admin.site.register(User, UserAdmin)
+```
+
+<br>
+
 ### 기타 설정
 
+- `python manage.py makemigrations` 명령으로 마이그레이션을 생성한다.
 - `python manage.py migrate` 명령으로 초기 마이그레이션을 해준다.
-
 - `python manage.py createsuperuser` 명령으로 관리자 계정을 생성한다.
-
 - `python manage.py runserver` 명령으로 서버가 돌아가는지 확인한다.
-
 - 아래와 같은 쓸데없는 주석들을 지운다.
 
 <p align="center">
