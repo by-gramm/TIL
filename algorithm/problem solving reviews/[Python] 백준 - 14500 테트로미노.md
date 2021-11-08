@@ -11,7 +11,7 @@ ___
 
 테트로미노를 놓는 19가지 방법은 아래와 같다. (빨간색은 기준점)
 
-![](https://images.velog.io/images/ready2start/post/d41dcd80-faaa-48e0-b029-ac6840ceb8c8/%ED%85%8C%ED%8A%B8%EB%A1%9C%EB%AF%B8%EB%85%B8.png)
+![](../algorithm.assets/테트로미노.png)
 
 각각의 칸에 대하여 19가지 방법을 각각 계산해도 되지만, 그렇게 할 경우 중복되는 부분을 여러 번 계산해야 해서 비효율적이다. 겹치는 부분을 최대한 적게 계산하기 위해서는 겹치는 부분이 많은 모양끼리 분류한 뒤 계산하면 된다.
 
@@ -21,7 +21,7 @@ ___
 
 1. 가로로 3칸 붙어 있는 조각을 포함한 경우
 
-![](https://images.velog.io/images/ready2start/post/3983a3d1-0370-415f-b113-d194fb69a492/1%EB%B2%88%20%EA%B2%BD%EC%9A%B0.png)
+![](../algorithm.assets/테트로미노2.png)
 
 기준점의 좌표를 `a[r][c]`라고 할 때, `a[r][c], a[r][c + 1], a[r][c + 2]`를 포함한다.
 
@@ -29,7 +29,7 @@ ___
 
 2. 세로로 3칸 붙어 있는 조각을 포함한 경우
 
-![](https://images.velog.io/images/ready2start/post/9ab5ca5a-f6df-412f-bb62-361dd95fa0a5/2%EB%B2%88%20%EA%B2%BD%EC%9A%B0.png)
+![](../algorithm.assets/테트로미노3.png)
 
 기준점의 좌표를 `a[r][c]`라고 할 때, 모두 `a[r][c], a[r + 1][c], a[r + 2][c]`를 포함한다.
 
@@ -37,7 +37,7 @@ ___
 
 3. 그 외의 경우
 
-![](https://images.velog.io/images/ready2start/post/03198f74-1ebc-407f-a723-7742f63e1ffb/3%EB%B2%88%EA%B2%BD%EC%9A%B0!.png)
+![](../algorithm.assets/테트로미노4.png)
 
 기준점을 `a[r][c]`라고 할 때, `a[r][c], a[r][c + 1], a[r + 1][c], a[r + 1][c + 1]` 중 3개 이상을 포함한다.
 

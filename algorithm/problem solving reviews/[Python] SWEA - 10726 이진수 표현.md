@@ -32,8 +32,9 @@ for tc in range(1, TC + 1):
 첫 번째 풀이에서는 M의 2진수 표현을 문자열과 비교하는 방식으로 문제를 풀었다. 그런데 사실 M은 2진수로 표현하더라도 동일한 값을 가지는 수이므로, M의 값 자체를 활용한 풀이를 생각해보았다.
 
 <p align="center">
-  <img src="algorithm.assets/swea10726.png" />
+  <img src="../algorithm.assets/swea10726.png" />
 </p>
+
 
 이 문제에서 알아야 하는 것은 M의 2진수 표현에서 마지막 N자리가 모두 1인지의 여부다. 
 

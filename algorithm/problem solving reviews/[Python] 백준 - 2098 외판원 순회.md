@@ -35,8 +35,9 @@ N개의 도시를 모두 거쳐 다시 원래의 도시로 돌아오는 순회 �
 이때, 전체 도시를 순회하는 최소 비용을 구한다.
 
 <p align="center">
-  <img src="algorithm.assets/tsp_example.png" width="50%" height="50%" />
+  <img src="../algorithm.assets/tsp_example.png" width="50%" height="50%" />
 </p>
+
 
 예를 들어, 위 그림에서는 `2 => 1 => 3 => 4 => 2`로 순회할 때의 12가 최소 비용이다.
 

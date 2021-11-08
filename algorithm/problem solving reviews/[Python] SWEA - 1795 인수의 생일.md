@@ -21,8 +21,9 @@ https://swexpertacademy.com/main/code/problem/problemDetail.do?contestProbId=AV4
 - X번 집으로 왔다가 다시 집으로 돌아가는 데 가장 오래 걸리는 집의 소요 시간을 구한다.
 
 <p align="center">
-  <img src="algorithm.assets/1795_example.png" width="70%" height="70%" />
+  <img src="../algorithm.assets/1795_example.png" width="70%" height="70%" />
 </p>
+
 
 예를 들어, 위 그림에서 인수의 집인 2번 집에 갔다가 다시 돌아오는 데 걸리는 시간은 아래와 같다.
 

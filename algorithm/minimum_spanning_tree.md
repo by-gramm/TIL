@@ -18,8 +18,9 @@
 - 그래프의 정점이 `n`개라면, `n - 1`개의 간선을 가진다.
 
 <p align="center">
-  <img src="minimum_spanning_tree.assets/spanning_trees.png" width="80%" height="80%" />
+  <img src="algorithm.assets/spanning_trees.png" width="80%" height="80%" />
 </p>
+
 
 #### 최소 신장 트리 (Minimum Spanning Tree)
 
@@ -28,8 +29,9 @@
 - 아래 그림에서, 3개의 신장 트리 중 오른쪽 신장 트리의 가중치 합이 8로 가장 적으므로, 해당 신장 트리가 그래프 A의 최소 신장 트리가 된다.
 
 <p align="center">
-  <img src="minimum_spanning_tree.assets/minimum_spanning_trees.png" width="80%" height="80%" />
+  <img src="algorithm.assets/minimum_spanning_trees.png" width="80%" height="80%" />
 </p>
+
 
 - cf) 위키피디아에 따르면, 방향 그래프에서의 최소 신장 트리 문제는 Arborescence 문제라 불리며, Chu-Liu/Edmonds 알고리즘을 사용하여 풀 수 있다고 한다. ([Chu-Liu/Edmonds 알고리즘](https://en.wikipedia.org/wiki/Edmonds%27_algorithm)) 
 
@@ -145,16 +147,18 @@ print(prim(0))
   - 여러 원소끼리 대표 원소를 비교하여, 같은 집합에 속했는지의 여부를 판단할 수 있다.
 
 <p align="center">
-  <img src="minimum_spanning_tree.assets/union-find1.png" width="70%" height="70%" />
+  <img src="algorithm.assets/union-find1.png" width="70%" height="70%" />
 </p>
+
 
 - `union`
   - 두 개의 집합을 하나의 집합으로 합친다.
   - 한 집합의 대표 원소가 다른 집합의 대표 원소를 가리키게 하는 방식으로 구현한다.
 
 <p align="center">
-  <img src="minimum_spanning_tree.assets/union-find2.png" width="80%" height="80%" />
+  <img src="algorithm.assets/union-find2.png" width="80%" height="80%" />
 </p>
+
 
 ```python
 # 합치기 전
@@ -214,11 +218,8 @@ print(distance)
 ## Prim vs Kruskal
 
 - Prim 알고리즘의 시간복잡도 : `O(N^2)`
-
 - Kruskal 알고리즘의 시간복잡도 : `O(ElogE)`
-
 - 정점에 비해 간선이 적은 **희소 그래프**에서는 Kruskal 알고리즘이 적합하다.
-- 
 - 정점에 비해 간선이 많은 **밀집 그래프**에서는 Prim 알고리즘이 적합하다.
 
 <br>
