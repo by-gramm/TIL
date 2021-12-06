@@ -119,7 +119,7 @@ django.core.serializers.base.DeserializationError: Problem installing fixture...
 
 django 공식 문서에 따르면, JSON 파일을 직렬화하기 위해서는 아래의 형식을 따라야 한다고 한다.
 
-![](mollbar.assets/json serialize.png)
+![](mollbar.assets/json_serialize.png)
 
 <br>
 
@@ -184,7 +184,7 @@ python manage.py loaddata movie_data.json
 python manage.py loaddata genre_data.json
 ```
 
-![](mollbar.assets/load movie data.png)
+![](mollbar.assets/load_movie_data.png)
 
 장고 서버에 잘 저장되었다!
 

@@ -17,7 +17,7 @@ def get_popular_movies_by_genres(request, genre_id):
 
 그런데 10,000개 가까이 되는 영화 데이터에서 쿼리문을 돌리기 때문에, 많은 시간이 소요될 것으로 예상되었다. 실제로 django debug toolbar를 통해 살펴보니, 애니메이션 장르를 기준으로 쿼리를 돌렸을 때 21개의 쿼리가 실행되었으며, 450~650ms 사이의 시간이 소요되었다. 
 
-![](mollbar.assets/최적화 전.png)
+![](mollbar.assets/before.png)
 
 <br>
 
@@ -44,7 +44,7 @@ def get_popular_movies_by_genres(request, genre_id):
 
 `prefetch_related` 추가 후  다시 애니메이션 장르를 기준으로 쿼리를 돌리니, 단 2개의 쿼리가 실행되었으며, 80~110ms 사이의 시간이 소요되었다.
 
-![](mollbar.assets/최적화 후.png)
+![](mollbar.assets/after.png)
 
 최적화에 성공했다!
 
