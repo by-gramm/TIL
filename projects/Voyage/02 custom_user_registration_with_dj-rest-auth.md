@@ -1,6 +1,6 @@
 # [DRF] Custom User Registration with dj_rest_auth
 
-## 과제 - 커스텀 User 모델의 추가 필드값 입력받기
+### 과제 - 커스텀 User 모델의 추가 필드값 입력받기
 
 현재 진행중인 토이 프로젝트에서 `dj_rest_auth`를 이용해 회원가입 API를 구현했다. 
 
@@ -51,11 +51,11 @@ AUTH_USER_MODEL = 'accounts.User'
 
 추가한 필드 중 `profile_image` 필드는 사용자에게 직접 입력받고자 했다. 하지만 따로 Serializer를 등록하지 않았으므로, 회원가입 창에서는 아직 해당 필드를 입력받을 수 없었다.
 
-![image-20211023164857514](django.assets/custom_register_01.png)
+![image-20211023164857514](voyage.assets/custom_register_01.png)
 
 <br>
 
-## 해결 1 - CustomRegisterSerializer
+### 해결 1 - CustomRegisterSerializer
 
 `dj_rest_auth`에서는 회원가입 시 기본적으로 `RegisterSerializer`를 이용한다. 따라서 만약 커스텀 필드를 추가적으로 입력받기 위해서는 해당 serializer를 상속받는 커스텀 serializer를 만들어야 한다.
 
@@ -92,11 +92,11 @@ REST_AUTH_REGISTER_SERIALIZERS = {
 
 이제 회원가입 창에서 `profile_image` 필드도 입력받을 수 있게 되었다. 하지만 여전히 해당 필드의 입력값은 저장되지 않았다.
 
-![image-20211023170121158](django.assets/custom_register_02.png)
+![image-20211023170121158](voyage.assets/custom_register_02.png)
 
 <br>
 
-## 해결 2 - CustomAccountAdapter
+### 해결 2 - CustomAccountAdapter
 
 `dj_rest_auth`로 회원가입을 하고자 할 때, 회원정보를 데이터베이스에 저장하는 역할을 하는 부분은 `all-auth`의 `DefaultAccountAdapter`다. 구체적으로는 해당 클래스의 `save_user` 메서드에서 회원 정보 데이터를 저장한다.
 
@@ -172,7 +172,7 @@ ACCOUNT_ADAPTER = 'accounts.adapters.CustomAccountAdapter'
 
 이제 회원가입 정보를 입력하면 `profile_image` 필드의 입력값도 저장된다!
 
-![image-20211023174321275](django.assets/custom_register_03.png)
+![image-20211023174321275](voyage.assets/custom_register_03.png)
 
 <br>
 
