@@ -157,7 +157,7 @@ const addWhiteboardSignal = canvasData => {
 
 문제는 2명 이상의 사용자가 동시에 그림을 그리는 경우였다. A와 B가 동시에 아래로 선을 그린다고 하자. 그렇다면 파티룸 이용자들에게는 A와 B가 보내는 정보가 교차되어 들어온다. 그러면 아래 그림과 같이 A가 그린 좌표와 B가 그린 좌표를 왔다갔다하는 현상이 발생한다. 또한 색상, 두께와 같은 속성 정보가 충돌하기도 했다. 예를 들어, A는 빨간색을 선택했더라도, B가 파란색으로 그림을 그리면 파란색 속성이 A의 context에도 저장되는 식이다.
 
-![](C:\Users\SSAFY\Pictures\whiteboard_problem.png)
+![](./whiteboard_problem.png)
 
 ### level 3. Multi-User Whiteboard with simultaneous drawing
 
