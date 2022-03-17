@@ -4,7 +4,7 @@
 
 
 
-### level 0. Canvas API vs webGL
+### Canvas API vs webGL
 
 화이트보드 기능을 구현하기 위해 고려한 선택지는 2가지였다. 둘의 특징을 살펴보면 다음과 같다.
 
@@ -27,7 +27,7 @@
 
 <br>
 
-### level 0.5. Understanding Canvas API
+### level 0. Understanding Canvas API
 
 **Canvas API**에서는 `CanvasRenderingContext2D` 인터페이스를 통해 `<canvas>` 요소 내에 그래픽을 표현할 수 있다.
 
