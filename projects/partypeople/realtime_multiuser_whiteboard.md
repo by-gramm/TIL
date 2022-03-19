@@ -70,7 +70,7 @@ ctx.closePath();
 
 ### level 1. Single-User Whiteboard
 
-색상/두께를 설정하면 context 내의 속성값이 그에 맞게 변경되도록 했다. 그리고 `<canvas>` 영역 내에서 마우스를 클릭하면 `beginPath()` 메서드로 그릴 준비를 하고, 현재 마우스의 좌표로 context의 좌표를 이동시켰다. 이후, `mouseup` 이벤트가 발생할 때까지 실시간으로 마우스 위치를 감지하여 직선을 그리게 했다. 예를 들어, 마우스가 `(10, 10) => (12, 12) => (15, 18)`로 이동했다면, `(10, 10)`에서 `(12, 12)`로 직선을 그리고 다시 `(12, 12)`에서 `(15, 18)`로 직선을 그리는 식이다. 이때 직선의 색상, 두께 등은 context에 저장된 속성에 의해 결정된다.
+색상/두께를 설정하면 context 내의 속성값이 그에 맞게 변경되도록 했다. 그리고 `<canvas>` 영역 내에서 마우스를 클릭하면(정확히는 `mousedown` 이벤트가 발생하면) `beginPath()` 메서드로 그릴 준비를 하고, 현재 마우스의 좌표로 context의 좌표를 이동시켰다. 이후, 마우스가 화이트보드 영역을 벗어나거나(`mouseleave` 이벤트) 마우스 버튼을 뗄 때까지(`mouseup` 이벤트) 실시간으로 마우스 위치를 감지하여 직선을 그리게 했다. 예를 들어, 마우스가 `(10, 10) => (12, 12) => (15, 18)`로 이동했다면, `(10, 10)`에서 `(12, 12)`로 직선을 그리고 다시 `(12, 12)`에서 `(15, 18)`로 직선을 그리는 식이다. 이때 직선의 색상, 두께 등은 context에 저장된 속성에 의해 결정된다.
 
 그 외에 지우개 기능, 캔버스 초기화 기능 등을 추가했다.
 
@@ -270,6 +270,83 @@ const addWhiteboardSignal = canvasData => {
     state.ctx.lineWidth = tempWidth;
 };
 ```
+
+<br>
+
+### level 4. Responsive Whiteboard (3.19 추가)
+
+기존 프로젝트에서는 level 3까지 구현을 완료했었다. 그런데 이 글을 쓰는 과정에서 새로운 문제가 떠올랐다. 
+
+위에서 구현한 화이트보드의 작동 방식을 다시 정리해보자. `mousedown` 이벤트가 발생할 때부터 `mouseleave` 또는 `mouseup` 이벤트가 발생할 때까지 화이트보드 영역 내의 마우스의 좌표값 및 속성값을 webRTC를 통해 다른 사용자들에게 전달한다. 다른 사용자의 브라우저에서는 전달받은 좌표값 및 속성값에 따라 화면에 그림을 그린다. 이때 좌표값은 정확히는 `<canvas>` 영역의 좌측 상단을 기준으로 하는 x좌표, y좌표의 px값인 `offsetX`, `offsetY` 값이다. 문제는 픽셀 값으로 좌표를 계산하기 때문에, 브라우저 창의 크기와 상관없이 화이트보드의 크기가 고정될 수밖에 없다는 점이다. 
+
+모바일/태플릿 환경에서도 이용 가능한 반응형 디자인을 적용하려면 브라우저 크기에 따라 화이트보드의 크기도 동적으로 변해야 한다. 그리고 다른 사용자들에게 px 단위의 좌표값이 아니라 `<canvas>` 영역 내에서의 상대적인 위치를 전달해야 한다. 이를 위해 아래와 같이 코드를 수정해보았다.
+
+<br>
+
+```javascript
+// 수정 전
+const CANVAS_WIDTH = 1000;
+const CANVAS_HEIGHT = 500;
+// 수정 후
+const CANVAS_WIDTH = window.innerWidth / 2;
+const CANVAS_HEIGHT = window.innerHeight / 3;
+```
+
+- 캔버스 영역의 크기를 절대 크기가 아니라 브라우저 크기에 상대적으로 수정했다. (단, 이는 임의로 정한 값으로, 실제 반응형을 구현하기 위해서는 브라우저 크기에 따라 레이아웃 자체를 바꾸는 등 훨씬 많은 작업이 필요하다.)
+
+```javascript
+// 그림 데이터를 보내는 부분
+
+// 수정 전
+const sendSignal = (lastX, lastY, x, y, color, width) => {
+	emit('send-whiteboard-signal', lastX, lastY, x, y, color, width);
+};
+
+// 수정 후
+const sendSignal = (lastX, lastY, x, y, color, width) => {
+    emit(
+        'send-whiteboard-signal', 
+        lastX / state.canvas.width, 
+        lastY / state.canvas.height, 
+        x / state.canvas.width, 
+        y / state.canvas.height, 
+        color, 
+        width / state.canvas.width
+    );
+};
+```
+
+- 이전에는 캔버스 영역 내의 px 위치값을 보냈다면, 수정 후에는 캔버스 영역 내의 상대적인 위치(ex. 상단 기준 20%, 왼쪽 기준 40%) 값을 보냈다. 선의 두께도 화이트보드 크기에 따라 달라져야 하므로, 캔버스 영역의 가로 길이로 나눠주었다.
+
+```javascript
+// 그림 데이터를 받는 부분
+
+// 수정 전
+const addWhiteboardSignal = canvasData => {
+    let data = JSON.parse(canvasData);
+    
+    // (중략)
+    state.ctx.lineWidth = data.width;
+    state.ctx.moveTo(data.lastX, data.lastY);
+    state.ctx.lineTo(data.currentX, data.currentY);
+    // (중략)
+};
+
+// 수정 후
+const addWhiteboardSignal = canvasData => {
+    let data = JSON.parse(canvasData);
+    
+    // (중략)
+    state.ctx.lineWidth = data.width * state.canvas.width;
+    state.ctx.moveTo(data.lastX * state.canvas.width, data.lastY * state.canvas.height);
+    state.ctx.lineTo(data.currentX * state.canvas.width, data.currentY * state.canvas.height);
+    // (중략)
+};
+```
+
+- 데이터를 받아서 그림을 그릴 때는, 전달받은 비율값을 다시 캔버스 영역 내의 px 위치값으로 바꾸어 화면에 그리도록 했다. 
+
+위의 과정을 통해 브라우저에 따라 동적으로 크기가 변하는 화이트보드 코드를 작성해보았다. (아쉽게도 현재는 서버가 만료된 상태라 실제 작동 여부를 확인해보지는 못했다.)
 
 <br>
 
