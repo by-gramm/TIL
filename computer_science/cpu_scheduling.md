@@ -1,6 +1,11 @@
 # CPU Scheduling
 
+#### 내용 출처
 
+- [KOCW <운영체제> 강의](http://www.kocw.net/home/cview.do?cid=3646706b4347ef09)
+- [책 <운영체제와 정보기술의 원리>](http://www.kyobobook.co.kr/product/detailViewKor.laf?ejkGb=KOR&mallGb=KOR&barcode=9791158903589)
+
+<br>
 
 ### Why : CPU 스케줄링은 왜 필요한가
 
