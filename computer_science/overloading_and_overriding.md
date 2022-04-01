@@ -99,7 +99,7 @@ public class Coffee {
     public String name;
     public int price;
     
-    public void showInfo() {
+    public void showPrice() {
         System.out.println("커피 가격: " + this.price);
     }
 }
