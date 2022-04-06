@@ -51,6 +51,46 @@ PriorityQueue<String> reverseStringQueue = new PriorityQueue<>(Collections.rever
 - `toArray()`
   - 우선순위 큐의 원소들을 배열로 반환한다.
 
+#### 예시 문제 풀이
+
+**더 맵게 (프로그래머스)**
+
+(출처 : https://programmers.co.kr/learn/courses/30/lessons/42626)
+
+
+```java
+import java.util.PriorityQueue;
+
+
+class Solution {
+    public int solution(int[] scoville, int K) {
+        PriorityQueue<Integer> heap = new PriorityQueue<>();
+        int count = 0;
+        
+        for (Integer food : scoville) {
+            if (food < K) {
+                heap.add(food);
+            }
+        }
+        
+        while (heap.size() >= 2) {
+            if (heap.peek() >= K) {
+                return count;
+            }
+            
+            Integer leastSpicy = heap.poll();
+            Integer secondLeastSpicy = heap.poll();
+            heap.add(leastSpicy +secondLeastSpicy * 2);
+            count++;
+        }
+        
+        return (heap.peek() < K) ? -1 : count;
+    }
+}
+```
+
+
+
 #### 참고 자료
 
 https://www.geeksforgeeks.org/priority-queue-class-in-java/
