@@ -56,8 +56,8 @@ def get_popular_movies_by_genres(request, genre_id):
 왜 2개의 쿼리가 실행되었을까?
 
 1. 메인 쿼리에서 Movie 테이블로 SELECT문 호출 ⇒  20개의 영화 엔티티를 조회 (기존과 동일)
-2. 영화 엔티티와 연관관계에 있는 테이블 (Genre 테이블)을 python에서 join
-3. join된 Genre 테이블로 1번의 SELECT문 호출
+2. Genre 테이블로 SELECT문 호출 ⇒ 찾은 데이터를 캐시에 저장
+3. 20개 영화 엔티티에 대한 장르 데이터를 DB에 쿼리를 보내서 찾는 대신, 2에서 저장한 캐시 데이터에서 조회
 
 
 
