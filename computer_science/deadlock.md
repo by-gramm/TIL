@@ -24,7 +24,7 @@
 
 Deadlock 발생 여부를 확인하기 위한 그래프
 
-![](.\cs.assets\deadlock01.png)![](.\cs.assets\deadlock02.png)
+![](./cs.assets/deadlock01.png)![](./cs.assets/deadlock02.png)
 
 - **Assignment Edge** (R -> P) : 자원이 프로세스에 할당되어 있다.
 - **Request Edge** (P -> R) : 프로세스가 자원을 요청했지만 아직 할당받지는 못한 상태다.
@@ -99,7 +99,7 @@ deadlock의 4가지 조건 중 하나가 만족되지 않도록 한다.
 - **Assignment Edge** (R -> P) (실선)
   - 자원을 프로세스에 할당함.
 
-![](.\cs.assets\deadlock03.png)
+![](./cs.assets/deadlock03.png)
 
 세 번째 그림이 deadlock은 아니다. 점선은 평생에 한번 자원을 요청할 수 있는 것을 의미하지, 현재 자원을 요청한 것을 의미하지는 않기 때문이다. 하지만 deadlock avoidance는 deadlock의 가능성이 아예 없는 경우에만, 다시 말해서 점선을 포함해도 cycle이 생기지 않는 경우에만 자원을 할당한다. 그래서 P2가 R2를 요청했을 때, R2를 아무도 가지고 있지 않음에도 P2에 할당하지 않는다. 
 
@@ -107,7 +107,7 @@ deadlock의 4가지 조건 중 하나가 만족되지 않도록 한다.
 
 2) 자원 당 인스턴스가 여러 개인 경우 : **Banker's Algorithm (은행원 알고리즘)**
 
-![](.\cs.assets\deadlock04.png)
+![](./cs.assets/deadlock04.png)
 
 - Allocation : 현재 프로세스별로 할당된 자원의 수
 - Max : 프로세스가 평생 사용하게 될 최대 자원의 수
