@@ -8,7 +8,7 @@
 - 같은 입력값에 대하여, 같은 출력값이 나오는 것이 보장된다.
 - hash table에서는 **임의의 데이터를 정수(해시값)으로 변환하는 함수**
 
-![img](.\cs.assets\hash_table.png)
+![](./cs.assets/hash_table.png)
 
 - ex. "John Smith"의 해시값이 2라면, 해시 테이블의 2번 인덱스에 "John Smith"를 저장한다.
 - **버킷(bucket)** : 데이터가 저장되는 곳
@@ -64,7 +64,7 @@
 - **연결 리스트** 자료구조를 통해 데이터를 저장한다.
 - 버킷에서 충돌 발생시, 기존 데이터에 새로운 데이터를 연결시킨다.
 
-![](.\cs.assets\chaining.png)
+![](./cs.assets/chaining.png)
 
 - 단점
   - 특정 인덱스에 자료가 몰릴 경우 검색 효율이 낮아진다.
