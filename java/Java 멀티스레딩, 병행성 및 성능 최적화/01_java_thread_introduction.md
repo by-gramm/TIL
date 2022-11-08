@@ -57,8 +57,6 @@ thread.setUncaughtExceptionHandler((t, e) -> {
 });
 ```
 
-- 그 외 `sleep`, `interrupt`, `join` : [다음 링크](https://github.com/by-gramm/java8study/tree/master/src/main/java/me/bygramm/java8study/Ch06#java-%EB%8F%99%EC%8B%9C%EC%84%B1-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D)를 참고
-
 <br>
 
 ## 스레드 종료
@@ -68,9 +66,9 @@ thread.setUncaughtExceptionHandler((t, e) -> {
   2. 스레드가 오작동하면, 스레드를 종료시켜야 한다.
   3. 애플리케이션 자체를 끝내려면, 먼저 스레드를 종료시켜야 한다.
 - `sleep(long millis)` / `sleep(long millis, long nanos)`
-  - n밀리초만큼 스레드를 일시정지 상태로 만든다.
+  - n밀리초 만큼 스레드를 일시정지 상태로 만든다.
 - `interrupt()`
-  - 스레드가 **일시 정지** 상태에 있을 때 InterruptedException을 발생시킨다.
+  - 스레드가 **일시 정지** 상태에 있을 때 **InterruptedException**을 발생시킨다. 이를 통해 Thread의 run() 메소드를 종료시킬 수 있다.
     - 일시 정지 상태 : WAITING / TIMED_WAITING / BLOCKED
     - 주의) 일시 정지 상태가 아닐 때는 interrupt() 메소드가 호출되어도 스레드가 종료되지 않는다.
   - 일시 정지 상태가 아닌 경우, 직접 interrupt() 호출 여부를 검사해서 처리해야 한다.
@@ -85,7 +83,7 @@ if (Thread.currentThread().isInterrupted()) {
 
 - **Daemon 스레드**
   - 배경에서 실행되는 스레드
-  - 애플리케이션이 종료될 때, JVM은 일반 스레드가 모두 종료될 때까지 기다린다. 반면 데몬 스레드가 실행 중인 경우, 종료를 기다리지 않고 그냥 종료시킨다.
+  - 애플리케이션이 종료될 때, JVM은 일반 스레드가 모두 종료될 때까지 기다린다. 반면 데몬 스레드가 실행 중인 경우, 스레드의 종료를 기다리지 않고 그냥 종료시킨다.
   - ex. 텍스트 편집기의 파일 저장 스레드
 - `setDaemon(true)`
   - 스레드를 데몬 스레드로 만든다.
