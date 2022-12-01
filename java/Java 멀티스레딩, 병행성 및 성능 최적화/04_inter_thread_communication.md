@@ -98,7 +98,7 @@ Condition condition = lock.newCondition();
 
 #### wait(), notify(), notifyAll()
 
-- Java의 Object 클래스는 wait() | notify() |notifyAll() 메소드를 포함한다.
+- Java의 Object 클래스는 wait() | notify() | notifyAll() 메소드를 포함한다.
   - 이 메소드들을 통해 어떠한 객체도 조건 변수로 사용 가능하다.
 - `public final void wait() throws InterruptedException`
   - 다른 스레드가 깨어날 때까지 현재 스레드를 기다리게 한다.

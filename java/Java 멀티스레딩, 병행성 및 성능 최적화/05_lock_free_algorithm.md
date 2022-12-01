@@ -9,7 +9,7 @@
 3. priority inversion
    - 우선순위가 낮은 스레드가 Lock을 가진 상태로 선점되는 경우, 우선순위가 높은 스레드가 Lock을 취득하고자 할 때 취득하지 못하게 된다.
 4. thread not releasing a lock
-   - Lock을 지닌 스레드가 죽거나, 인터럽트되거나, Lock 반환을 잊어버린 경우, 다른 모든 스레드는 정체되게 된다. 
+   - Lock을 지닌 스레드가 죽거나, 인터럽트되거나, Lock 반환을 잊어버린 경우, 다른 모든 스레드는 정체된다. 
 5. performance
    - Lock을 취득하는 과정에서 오버헤드가 발생한다.
 
@@ -108,7 +108,7 @@ public static class LockFreeStack<T> {
                 currentHeadNode = head.get();
             }
         }
-        counter.incrementAndGet();
+        counter.decrementAndGet();
         return currentHeadNode != null ? currentHeadNode.value : null;
     }
 

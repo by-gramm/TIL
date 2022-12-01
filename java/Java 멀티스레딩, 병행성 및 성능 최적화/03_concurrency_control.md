@@ -129,9 +129,9 @@ public void calculate() {
 
 ## Locking
 
-#### Fine-Grained Locking vs Corase-Grained Locking
+#### Fine-Grained Locking vs Coarse-Grained Locking
 
-- **corase-grained locking**
+- **coarse-grained locking**
   - 모든 공유 자원을 하나의 Locking으로 제한한다.
 - **fine-grained locking**
   - 각 자원마다 개별 Locking을 건다.
